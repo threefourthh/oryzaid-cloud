@@ -1,3 +1,5 @@
+# app/services/db.py
+
 import os
 from dotenv import load_dotenv
 from supabase import create_client, Client
@@ -5,12 +7,14 @@ from supabase import create_client, Client
 load_dotenv()
 
 SUPABASE_URL = os.getenv("SUPABASE_URL")
-SUPABASE_KEY = os.getenv("SUPABASE_SECRET_KEY")
+SUPABASE_KEY = os.getenv("SUPABASE_SECRET_KEY")  # keep your name for compatibility
 
 if not SUPABASE_URL or not SUPABASE_KEY:
     raise RuntimeError("Missing SUPABASE_URL or SUPABASE_SECRET_KEY")
 
+# Create client once (better performance)
 _supabase: Client = create_client(SUPABASE_URL, SUPABASE_KEY)
+
 
 def get_supabase() -> Client:
     return _supabase
