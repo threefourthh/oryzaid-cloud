@@ -34,6 +34,10 @@ class MissionIn(BaseModel):
     center_lng: Optional[float] = None
     capture_time: Optional[datetime] = None
     started_at: Optional[datetime] = None
+    
+    # 🔥 ADD THIS LINE SO THE SEVERITY MATH WORKS:
+    total_images: Optional[int] = None 
+    
     flight_path: List[LatLngPoint] = Field(default_factory=list)
     field_boundary: List[LatLngPoint] = Field(default_factory=list)
 
